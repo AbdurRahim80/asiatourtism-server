@@ -39,6 +39,12 @@ async function run() {
     })
 
 
+    app.get('/spot', async(req, res)=>{
+      const cursor = userCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
     
 
     
