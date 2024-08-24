@@ -60,7 +60,31 @@ async function run() {
       res.send(result);
     })
 
-   
+    app.put('/spot/:id', async(req, res)=>{
+      const id = req.params.id;
+      const filter = {_id: new ObjectId(id)};
+      const options = {upsert: true};
+      const updateSpot = req.body;
+      const spot = {
+        $set:{
+          spot: updateSpot.spot,
+          country: updateSpot.country, 
+          location: updateSpot.location, 
+          AvgConst: updateSpot.AvgConst, 
+          seasonality: updateSpot.seasonality, 
+          photoUrl: updateSpot.photoUrl, 
+          travel_time: updateSpot.travel_time, 
+          totalVisitorsPerYear: updateSpot.totalVisitorsPerYear, 
+          description: updateSpot.description, 
+        }
+      }
+      const result = await userCollection.updateOne(filter, spot, options);
+      console.log(result);
+      res.send(result)
+    })
+
+    
+
     
     
     // app.get('/allList/:id', async(req, res)=>{
