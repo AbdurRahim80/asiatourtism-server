@@ -52,7 +52,15 @@ async function run() {
       res.send(result);
     })
 
-    
+    app.get('/spot/:id', async(req, res)=>{
+      const id = req.params.id;
+      const cursor = {_id: new ObjectId(id)};
+      const result = await userCollection.findOne(cursor);
+      console.log("rest", result);
+      res.send(result);
+    })
+
+   
     
     
     // app.get('/allList/:id', async(req, res)=>{
