@@ -45,8 +45,14 @@ async function run() {
       res.send(result);
     })
 
-    
+    app.get('/myList/:email', async(req, res)=>{
+      console.log(req.params.email);
+      const result = await userCollection.find({email: req.params.email}).toArray();
+      console.log(result);
+      res.send(result);
+    })
 
+    
     
     
     // app.get('/allList/:id', async(req, res)=>{
